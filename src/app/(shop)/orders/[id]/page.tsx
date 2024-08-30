@@ -15,14 +15,11 @@ interface Props {
 export default async function OrdersByIdPage({ params }: Props) {
   const { id } = params;
 
-  // Todo: Llamar el server action
-
   const { ok, order } = await getOrderById(id);
 
   if (!ok) {
     redirect("/");
   }
-
   const address = order!.OrderAddress;
 
   return (
@@ -64,6 +61,25 @@ export default async function OrdersByIdPage({ params }: Props) {
                 </div>
               </div>
             ))}
+
+            <div>
+              <h3 className="text-sm font-bold">Pudes simular el proceso de pago usando estas cuentas:</h3>
+              <div className="mt-2">
+                <h4 className="text-md font-bold">Mercado Pago:</h4>
+                <span className="block text-sm"><strong>Tarjeta de credito:</strong> 3743 781877 55283</span>
+                <span className="block text-sm"><strong>Codigo de seguridad:</strong> 1234</span>
+                <span className="block text-sm"><strong>Fecha de caducidad:</strong> 11/25</span>
+                <span className="block text-sm"><strong>Usuario:</strong> User</span>
+                <span className="block text-sm"><strong>CC:</strong> 1234567890</span>
+                <span className="block text-sm"><strong>Email:</strong> userprueba@prueba.com</span>
+              </div>
+              <div className="mt-2">
+                <h4 className="text-md font-bold">Paypal:</h4>
+                <span className="block text-sm"><strong>Email:</strong> feliperuiz@gmil.com</span>
+                <span className="block text-sm"><strong>Contraseña:</strong> 12345678</span>
+              </div>
+
+            </div>
           </div>
 
           {/* Checkout - Resumen de orden */}
@@ -109,12 +125,12 @@ export default async function OrdersByIdPage({ params }: Props) {
               </span>
             </div>
 
-            <div className="mt-5 mb-2 w-full">
+            <div className="mt-5 mb-2 w-full border-blackr">
               {order?.isPaid ? (
                 <OrderStatus isPaid={order?.isPaid ?? false} />
               ) : (
                 <>
-                  <MercadoPagoButton order={order} />
+                  <MercadoPagoButton order={order!} />
                   <PayPalButton amount={order!.total} orderId={order!.id} />
                 </>
               )}

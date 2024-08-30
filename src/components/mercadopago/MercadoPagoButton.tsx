@@ -7,15 +7,14 @@ interface Props {
 }
 function MercadoPagoButton(order: Props) {
     function handleClick() {
-        console.log({ order })
-        console.log('jp;a')
         createPreference(order.order)
     }
     return (
         <button
+            className='p-3 mb-3 w-full bg-blue-500 text-white text-center rounded-sm hover:bg-blue-400 transition-all'
             type='button'
             onClick={handleClick}
-        >Pagar con MercadoPago</button>
+        >MercadoPago</button>
     )
 }
 
