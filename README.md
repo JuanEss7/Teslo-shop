@@ -1,6 +1,7 @@
 # Descripción
 
-
+Proyecto realizado siguiendo el curso:"Next.js: El framework de React para producción
+" de Fernando Herrera. Se le agregaron ciertas funcionalidades y estilos para distinguirlo del proyecto original.
 
 ## Correr en dev
 
