@@ -41,11 +41,11 @@ function ProductSlideHome({ products }: Props) {
         }
     }, [])
     return (
-        <div className="mb-10 border w-full h-fit">
+        <div className="mb-10 w-full h-fit">
             <Swiper
                 pagination
                 autoplay={{
-                    delay: 2500
+                    delay: 3500
                 }}
                 navigation={!isMobile}
                 modules={[FreeMode, Autoplay, Pagination, Navigation]}
