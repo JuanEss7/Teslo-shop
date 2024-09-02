@@ -7,7 +7,7 @@ import { PlaceOrder } from './ui/PlaceOrder';
 
 export default function CheckoutPage() {
   return (
-    <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
+    <section className="flex justify-center items-center mb-72 px-10 sm:px-0">
       <div className="flex flex-col w-[1000px]">
         <Title title="Verificar orden" />
 
@@ -27,6 +27,6 @@ export default function CheckoutPage() {
           <PlaceOrder />
         </div>
       </div>
-    </div>
+    </section>
   );
 }

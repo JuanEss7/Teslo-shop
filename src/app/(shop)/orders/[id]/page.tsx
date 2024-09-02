@@ -23,7 +23,7 @@ export default async function OrdersByIdPage({ params }: Props) {
   const address = order!.OrderAddress;
 
   return (
-    <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
+    <section className="flex justify-center items-center mb-72 px-10 sm:px-0">
       <div className="flex flex-col w-[1000px]">
         <Title title={`Orden #${id.split("-").at(-1)}`} />
 
@@ -62,7 +62,7 @@ export default async function OrdersByIdPage({ params }: Props) {
               </div>
             ))}
 
-            <div>
+            <aside className="bg-white shadow-md dark:bg-zinc-900">
               <h3 className="text-sm font-bold">Pudes simular el proceso de pago usando estas cuentas:</h3>
               <div className="mt-2">
                 <h4 className="text-md font-bold">Mercado Pago:</h4>
@@ -78,12 +78,11 @@ export default async function OrdersByIdPage({ params }: Props) {
                 <span className="block text-sm"><strong>Email:</strong> feliperuiz@gmil.com</span>
                 <span className="block text-sm"><strong>Contraseña:</strong> 12345678</span>
               </div>
-
-            </div>
+            </aside>
           </div>
 
           {/* Checkout - Resumen de orden */}
-          <div className="bg-white rounded-xl shadow-xl p-7">
+          <div className="bg-white rounded-xl shadow-xl p-7 dark:bg-zinc-900">
             <h2 className="text-2xl mb-2">Dirección de entrega</h2>
             <div className="mb-10">
               <p className="text-xl">
@@ -138,6 +137,6 @@ export default async function OrdersByIdPage({ params }: Props) {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

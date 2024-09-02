@@ -12,7 +12,7 @@ export const PlaceOrder = () => {
 
   const router = useRouter();
   const [loaded, setLoaded] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | undefined>('');
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
 
 
@@ -22,19 +22,19 @@ export const PlaceOrder = () => {
   const { itemsInCart, subTotal, tax, total } = useCartStore((state) =>
     state.getSummaryInformation()
   );
-  const cart = useCartStore( state => state.cart );
-  const clearCart = useCartStore( state => state.clearCart );
+  const cart = useCartStore(state => state.cart);
+  const clearCart = useCartStore(state => state.clearCart);
 
   useEffect(() => {
     setLoaded(true);
   }, []);
 
 
-  const onPlaceOrder = async() => {
+  const onPlaceOrder = async () => {
     setIsPlacingOrder(true);
     // await sleep(2);
 
-    const productsToOrder = cart.map( product => ({
+    const productsToOrder = cart.map(product => ({
       productId: product.id,
       quantity: product.quantity,
       size: product.size,
@@ -42,17 +42,17 @@ export const PlaceOrder = () => {
 
 
     //! Server Action
-    const resp = await placeOrder( productsToOrder, address);
-    if ( !resp.ok ) {
+    const resp = await placeOrder(productsToOrder, address);
+    if (!resp.ok) {
       setIsPlacingOrder(false);
       setErrorMessage(resp.message);
       return;
     }
 
     //* Todo salio bien!
+    setErrorMessage('')
     clearCart();
-    router.replace('/orders/' + resp.order?.id );
-
+    router.replace('/orders/' + resp.order?.id);
 
   }
 
@@ -64,7 +64,7 @@ export const PlaceOrder = () => {
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-xl p-7">
+    <div className="bg-white rounded-xl shadow-xl p-7 dark:bg-zinc-900">
       <h2 className="text-2xl mb-2">Dirección de entrega</h2>
       <div className="mb-10">
         <p className="text-xl">
@@ -118,11 +118,11 @@ export const PlaceOrder = () => {
         </p>
 
 
-        <p className="text-red-500">{ errorMessage }</p>
+        <p className="text-red-500 mb-3">{errorMessage}</p>
 
         <button
           // href="/orders/123"
-          onClick={ onPlaceOrder }
+          onClick={onPlaceOrder}
           className={
             clsx({
               'btn-primary': !isPlacingOrder,

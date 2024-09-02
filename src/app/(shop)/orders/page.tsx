@@ -19,7 +19,7 @@ export default async function OrdersPage() {
     <>
       <Title title="Orders" />
 
-      <div className="mb-10">
+      <section className="mb-10">
         <table className="min-w-full">
           <thead className="bg-gray-200 border-b">
             <tr>
@@ -75,17 +75,17 @@ export default async function OrdersPage() {
                   )}
                 </td>
                 <td className="text-sm text-gray-900 font-light px-6 ">
-                  <Link href={`/orders/${ order.id }`} className="hover:underline">
+                  <Link href={`/orders/${order.id}`} className="hover:underline">
                     Ver orden
                   </Link>
                 </td>
               </tr>
             ))}
 
-            
+
           </tbody>
         </table>
-      </div>
+      </section>
     </>
   );
 }

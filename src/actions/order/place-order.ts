@@ -115,9 +115,8 @@ export const placeOrder = async (
           },
         },
       });
-
-      // Validar, si el price es cero, entonces, lanzar un error
-
+      // Validar, si el total es cero, entonces, lanzar un error
+      if (order.total === 0) return
       // 3. Crear la direccion de la orden
       // Address
       const { country, ...restAddress } = address;
@@ -139,15 +138,16 @@ export const placeOrder = async (
 
     return {
       ok: true,
-      order: prismaTx.order,
+      order: prismaTx?.order,
       prismaTx: prismaTx,
     }
 
 
   } catch (error: any) {
+    console.log(error?.message)
     return {
       ok: false,
-      message: error?.message,
+      message: 'Error al subir la orden.',
     };
   }
 };

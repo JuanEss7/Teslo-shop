@@ -1,8 +1,5 @@
-'use client' // 60 segundos
-
-
-import { redirect } from 'next/navigation';
-
+'use client'
+export const revalidatePath = 60
 import { getPaginatedProductsWithImages } from '@/actions';
 import { Pagination, ProductGrid, Title } from '@/components';
 import ProductSlideHome from '@/components/product/slideshow/ProductSlideHome';
@@ -75,7 +72,7 @@ export default function Home({ searchParams }: Props) {
                 type="text"
                 name='product'
                 placeholder='Buscar producto'
-                className='py-1 px-2 focus:outline-none'
+                className='py-1 px-2 focus:outline-none rounded-sm bg-transparent'
                 onChange={(e) => setSearchProduct(e.target.value)}
                 value={searchProduct}
               />
@@ -96,7 +93,7 @@ export default function Home({ searchParams }: Props) {
           <div className='w-full flex items-center justify-center'>
             <RotatingLines
               visible={true}
-              strokeColor='black'
+              strokeColor='#60a2e9'
               width="70"
               strokeWidth="3"
               animationDuration="0.6"

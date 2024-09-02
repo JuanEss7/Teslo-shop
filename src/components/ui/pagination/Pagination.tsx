@@ -19,35 +19,35 @@ export const Pagination = ({ totalPages }: Props) => {
   const searchParams = useSearchParams();
 
   const pageString = searchParams.get('page') ?? 1;
-  const currentPage = isNaN( +pageString ) ? 1 : +pageString;
+  const currentPage = isNaN(+pageString) ? 1 : +pageString;
 
-  if (currentPage < 1 || isNaN(+pageString) ) {
-    redirect( pathname );
+  if (currentPage < 1 || isNaN(+pageString)) {
+    redirect(pathname);
   }
- 
+
 
 
   const allPages = generatePaginationNumbers(currentPage, totalPages);
 
 
-  const createPageUrl = ( pageNumber: number | string ) => {
+  const createPageUrl = (pageNumber: number | string) => {
 
-    const params = new URLSearchParams( searchParams );
+    const params = new URLSearchParams(searchParams);
 
-    if ( pageNumber === '...' ) {
-      return `${ pathname }?${ params.toString() }`
+    if (pageNumber === '...') {
+      return `${pathname}?${params.toString()}`
     }
 
-    if ( +pageNumber <= 0 ) {
-      return `${ pathname }`; //   href="/kid";
+    if (+pageNumber <= 0) {
+      return `${pathname}`; //   href="/kid";
     }
 
-    if ( +pageNumber > totalPages ) { // Next > 
-      return `${pathname}?${ params.toString() }`;
+    if (+pageNumber > totalPages) { // Next > 
+      return `${pathname}?${params.toString()}`;
     }
 
     params.set('page', pageNumber.toString());
-    return `${  pathname }?${ params.toString() }`;
+    return `${pathname}?${params.toString()}`;
 
   }
 
@@ -61,29 +61,29 @@ export const Pagination = ({ totalPages }: Props) => {
         <ul className="flex list-style-none">
           <li className="page-item">
             <Link
-              className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-              href={ createPageUrl( currentPage - 1 ) }
+              className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none dark:text-gray-400"
+              href={createPageUrl(currentPage - 1)}
             >
               <IoChevronBackOutline size={30} />
             </Link>
           </li>
 
           {
-            allPages.map( (page, index) => (
+            allPages.map((page, index) => (
 
-              <li key={ page } className="page-item">
+              <li key={page} className="page-item">
                 <Link
                   className={
                     clsx(
-                      "page-link relative block py-1.5 px-3 border-0 outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none",
+                      "page-link relative block py-1.5 px-3 border-0 outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none dark:hover:bg-zinc-800 dark:text-gray-300 dark:hover:text-gray-200",
                       {
-                        'bg-blue-600 shadow-sm text-white hover:text-white hover:bg-blue-700': page === currentPage
+                        'bg-blue-600 shadow-sm text-white  hover:bg-blue-700 dark:hover:text-white dark:hover:bg-blue-700': page === currentPage
                       }
                     )
                   }
-                  href={ createPageUrl( page ) }
+                  href={createPageUrl(page)}
                 >
-                  { page }
+                  {page}
                 </Link>
               </li>
 
@@ -92,12 +92,12 @@ export const Pagination = ({ totalPages }: Props) => {
           }
 
 
-          
+
 
           <li className="page-item">
             <Link
-              className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-              href={ createPageUrl( currentPage + 1 ) }
+              className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none dark:text-gray-400 "
+              href={createPageUrl(currentPage + 1)}
             >
               <IoChevronForwardOutline size={30} />
             </Link>

@@ -11,21 +11,18 @@ export const TopMenu = () => {
 
   const openSideMenu = useUIStore((state) => state.openSideMenu);
   const totalItemsInCart = useCartStore((state) => state.getTotalItems());
-  
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     setLoaded(true);
   }, [])
-  
-
 
   return (
     <nav className="flex px-5 justify-between items-center w-full">
       {/* Logo */}
       <div>
         <Link href="/">
-          <span className={`${titleFont.className } antialiased font-bold`}>
+          <span className={`${titleFont.className} antialiased font-bold`}>
             Teslo
           </span>
           <span> | Shop</span>
@@ -35,19 +32,19 @@ export const TopMenu = () => {
       {/* Center Menu */}
       <div className="hidden sm:block">
         <Link
-          className="m-2 p-2 rounded-md transition-all hover:bg-gray-100"
+          className="m-2 p-2 rounded-md transition-all hover:bg-gray-100 dark:hover:bg-zinc-700"
           href="/gender/men"
         >
           Hombres
         </Link>
         <Link
-          className="m-2 p-2 rounded-md transition-all hover:bg-gray-100"
+          className="m-2 p-2 rounded-md transition-all hover:bg-gray-100 dark:text-white dark:hover:bg-zinc-700"
           href="/gender/women"
         >
           Mujeres
         </Link>
         <Link
-          className="m-2 p-2 rounded-md transition-all hover:bg-gray-100"
+          className="m-2 p-2 rounded-md transition-all hover:bg-gray-100 dark:text-white dark:hover:bg-zinc-700"
           href="/gender/kid"
         >
           Niños
@@ -56,17 +53,16 @@ export const TopMenu = () => {
 
       {/* Search, Cart, Menu */}
       <div className="flex items-center">
-        <Link href="/search" className="mx-2">
+        {/* <Link href="/search" className="mx-2">
           <IoSearchOutline className="w-5 h-5" />
-        </Link>
-
+        </Link> */}
         <Link href={
-          ( (totalItemsInCart === 0 ) && loaded )
+          ((totalItemsInCart === 0) && loaded)
             ? '/empty'
             : "/cart"
         } className="mx-2">
           <div className="relative">
-            {  ( loaded && totalItemsInCart > 0) && (
+            {(loaded && totalItemsInCart > 0) && (
               <span className="fade-in absolute text-xs px-1 rounded-full font-bold -top-2 -right-2 bg-blue-700 text-white">
                 {totalItemsInCart}
               </span>
@@ -77,7 +73,7 @@ export const TopMenu = () => {
 
         <button
           onClick={openSideMenu}
-          className="m-2 p-2 rounded-md transition-all hover:bg-gray-100"
+          className="m-2 p-2 rounded-md transition-all hover:bg-gray-100 dark:hover:bg-zinc-700"
         >
           Menú
         </button>

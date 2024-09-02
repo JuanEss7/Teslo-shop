@@ -12,17 +12,15 @@ interface Props {
 
 export const AddToCart = ({ product }: Props) => {
 
-  const addProductToCart = useCartStore( state => state.addProductTocart );
+  const addProductToCart = useCartStore(state => state.addProductTocart);
 
-  const [size, setSize] = useState<Size | undefined>();
+  const [size, setSize] = useState<Size>(product.sizes[0]);
   const [quantity, setQuantity] = useState<number>(1);
   const [posted, setPosted] = useState(false);
-
   const addToCart = () => {
     setPosted(true);
 
     if (!size) return;
-
     const cartProduct: CartProduct = {
       id: product.id,
       slug: product.slug,
@@ -36,11 +34,10 @@ export const AddToCart = ({ product }: Props) => {
     addProductToCart(cartProduct);
     setPosted(false);
     setQuantity(1);
-    setSize(undefined);
+    setSize(product.sizes[0]);
 
 
   };
-
 
   return (
     <>
