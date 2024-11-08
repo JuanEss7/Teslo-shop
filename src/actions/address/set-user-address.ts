@@ -6,7 +6,7 @@ import prisma from "@/lib/prisma";
 export const setUserAddress = async (address: Address, userId: string) => {
   try {
 
-    const newAddress = await createOrReplaceAddress( address, userId );
+    const newAddress = await createOrReplaceAddress(address, userId);
 
     return {
       ok: true,
@@ -47,7 +47,6 @@ const createOrReplaceAddress = async (address: Address, userId: string) => {
       const newAddress = await prisma.userAddress.create({
         data: addressToSave,
       });
-
       return newAddress;
     }
 
