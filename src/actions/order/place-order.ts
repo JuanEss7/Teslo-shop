@@ -123,7 +123,7 @@ export const placeOrder = async (
       const orderAddress = await tx.orderAddress.create({
         data: {
           ...restAddress,
-          countryId: country,
+          countryId: country!,
           orderId: order.id,
         },
       });
