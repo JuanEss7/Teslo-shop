@@ -20,7 +20,7 @@ export default async function OrdersByIdPage({ params }: Props) {
   if (!ok) {
     redirect("/");
   }
-  const address = order!.OrderAddress;
+  const address = order!.OrderAddress!;
 
   return (
     <section className="flex justify-center items-center mb-72 px-10 sm:px-0">
@@ -62,7 +62,7 @@ export default async function OrdersByIdPage({ params }: Props) {
               </div>
             ))}
 
-            <aside className="bg-white shadow-md dark:bg-zinc-900">
+            <aside className="px-4 py-2 bg-white shadow-md dark:bg-zinc-900">
               <h3 className="text-sm font-bold">Pudes simular el proceso de pago usando estas cuentas:</h3>
               <div className="mt-2">
                 <h4 className="text-md font-bold">Mercado Pago:</h4>
@@ -129,7 +129,7 @@ export default async function OrdersByIdPage({ params }: Props) {
                 <OrderStatus isPaid={order?.isPaid ?? false} />
               ) : (
                 <>
-                  <MercadoPagoButton order={order!} />
+                  <MercadoPagoButton orderId={order!.id} orderItem={order!.OrderItem} />
                   <PayPalButton amount={order!.total} orderId={order!.id} />
                 </>
               )}

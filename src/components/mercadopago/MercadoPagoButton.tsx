@@ -1,13 +1,14 @@
 "use client"
 import { createPreference } from '@/actions'
-import { Order } from '@/interfaces/order.interface'
+import { Item } from '@/interfaces/order.interface'
 import React from 'react'
 interface Props {
-    order: Order
+    orderId: string
+    orderItem: Item[]
 }
-function MercadoPagoButton(order: Props) {
+function MercadoPagoButton({ orderItem, orderId }: Props) {
     function handleClick() {
-        createPreference(order.order)
+        createPreference({ orderItem, orderId })
     }
     return (
         <button

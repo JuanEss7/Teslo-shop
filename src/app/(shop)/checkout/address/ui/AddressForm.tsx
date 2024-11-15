@@ -114,7 +114,7 @@ export const AddressForm = ({ countries, userStoredAddress = {} }: Props) => {
           <option value="">[ Seleccione ]</option>
           {
             countries.map(country => (
-              <option key={country.id} value={country.id}>{country.name}</option>
+              <option key={country.id} value={country.id} className='text-black'>{country.name}</option>
             ))
           }
         </select>

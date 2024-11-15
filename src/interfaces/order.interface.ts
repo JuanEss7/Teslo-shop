@@ -33,3 +33,16 @@ export interface Order {
     OrderAddress: OrderAddress,
     OrderItem: OrderItem[]
 }
+
+export interface Item {
+    price: number,
+    quantity: number,
+    size: Size,
+    product: {
+        title: string,
+        slug: string,
+        ProductImage: {
+            url: string
+        }[]
+    }
+}

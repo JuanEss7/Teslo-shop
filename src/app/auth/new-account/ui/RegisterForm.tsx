@@ -11,7 +11,7 @@ import { useState } from 'react';
 type FormInputs = {
   name: string;
   email: string;
-  password: string;  
+  password: string;
 }
 
 
@@ -19,21 +19,21 @@ type FormInputs = {
 export const RegisterForm = () => {
 
   const [errorMessage, setErrorMessage] = useState('')
-  const { register, handleSubmit, formState: {errors} } = useForm<FormInputs>();
+  const { register, handleSubmit, formState: { errors } } = useForm<FormInputs>();
 
-  const onSubmit: SubmitHandler<FormInputs> = async(data) => {
+  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     setErrorMessage('');
     const { name, email, password } = data;
-    
-    // Server action
-    const resp = await registerUser( name, email, password );
 
-    if ( !resp.ok ) {
-      setErrorMessage( resp.message );
+    // Server action
+    const resp = await registerUser(name, email, password);
+
+    if (!resp.ok) {
+      setErrorMessage(resp.message);
       return;
     }
 
-    await login( email.toLowerCase(), password );
+    await login(email.toLowerCase(), password);
     window.location.replace('/');
 
 
@@ -41,7 +41,7 @@ export const RegisterForm = () => {
 
 
   return (
-    <form onSubmit={ handleSubmit( onSubmit ) }  className="flex flex-col">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
 
       {/* {
         errors.name?.type === 'required' && (
@@ -54,7 +54,7 @@ export const RegisterForm = () => {
       <input
         className={
           clsx(
-            "px-5 py-2 border bg-gray-200 rounded mb-5",
+            "px-5 py-2 border bg-gray-200 rounded mb-5 text-black",
             {
               'border-red-500': errors.name
             }
@@ -62,41 +62,41 @@ export const RegisterForm = () => {
         }
         type="text"
         autoFocus
-        { ...register('name', { required: true }) }
+        {...register('name', { required: true })}
       />
 
       <label htmlFor="email">Correo electrónico</label>
       <input
         className={
           clsx(
-            "px-5 py-2 border bg-gray-200 rounded mb-5",
+            "px-5 py-2 border bg-gray-200 rounded mb-5 text-black",
             {
               'border-red-500': errors.email
             }
           )
         }
         type="email"
-        { ...register('email', { required: true, pattern: /^\S+@\S+$/i }) }
+        {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
       />
 
       <label htmlFor="email">Contraseña</label>
       <input
         className={
           clsx(
-            "px-5 py-2 border bg-gray-200 rounded mb-5",
+            "px-5 py-2 border bg-gray-200 rounded mb-5 text-black",
             {
               'border-red-500': errors.password
             }
           )
         }
         type="password"
-        { ...register('password', { required: true, minLength: 6 }) }
+        {...register('password', { required: true, minLength: 6 })}
       />
 
-      
-        <span className="text-red-500">{ errorMessage } </span>
-        
-      
+
+      <span className="text-red-500">{errorMessage} </span>
+
+
 
       <button className="btn-primary">Crear cuenta</button>
 

@@ -3,15 +3,18 @@
 import { Preference } from "mercadopago"
 import { clientMP } from "./config"
 import { redirect } from "next/navigation";
-import type { Order } from "@/interfaces/order.interface";
-
-export async function createPreference(order: Order) {
-    if (!order) return
-    if (!order.OrderItem) return
-    if (order.OrderItem.length < 1) return
-    const items = order.OrderItem.map((item) => {
+import type { Item } from "@/interfaces/order.interface";
+interface Props {
+    orderId: string
+    orderItem: Item[]
+}
+export async function createPreference({ orderId, orderItem }: Props) {
+    if (!orderId) return
+    if (!orderItem) return
+    if (orderItem.length < 1) return
+    const items = orderItem.map((item) => {
         return {
-            id: order.id,
+            id: orderId,
             title: item.product.title,
             quantity: item.quantity,
             unit_price: Number(item.price * 1000)
