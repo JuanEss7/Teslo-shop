@@ -10,6 +10,13 @@ export const metadata: Metadata = {
     default: "Home - Teslo | Shop",
   },
   description: "Una tienda virtual de productos",
+  openGraph: {
+    title: "Teslo | Shop",
+    description: "Proyecto personal que simula una tienda virtual, diseñado para explorar y entender los procesos de comercio electrónico. Incluye la navegación de productos, gestión de carrito de compras y simulación de pagos, proporcionando una experiencia interactiva y educativa",
+    images: "/teslo-shop.webp",
+    url: "https://teslo-shop-vert.vercel.app/",
+    type: "website"
+  }
 };
 
 export default function RootLayout({

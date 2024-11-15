@@ -25,9 +25,9 @@ export async function createPreference({ orderId, orderItem }: Props) {
         body: {
             items,
             back_urls: {
-                success: "https://ffa7-190-90-132-155.ngrok-free.app/orders",
-                failure: "https://ffa7-190-90-132-155.ngrok-free.app/orders",
-                pending: "https://ffa7-190-90-132-155.ngrok-free.app/orders"
+                success: "https://teslo-shop-vert.vercel.app/orders",
+                failure: "https://teslo-shop-vert.vercel.app/orders",
+                pending: "https://teslo-shop-vert.vercel.app/orders"
             },
             auto_return: 'approved'
         }
