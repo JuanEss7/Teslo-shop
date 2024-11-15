@@ -2,7 +2,6 @@
 import { clientMP } from "@/actions";
 import prisma from "@/lib/prisma";
 import { Payment } from "mercadopago";
-import { revalidatePath } from "next/cache";
 import { NextRequest } from "next/server";
 interface Body {
     action: string,
@@ -20,7 +19,11 @@ export async function POST(request: NextRequest) {
     if (!data.id) return
     try {
         const payment = await new Payment(clientMP).get({ id: data.id });
-        const orderId = payment.additional_info?.items[0].id ?? '';
+        const orderId = payment.additional_info?.items?.at(0)?.id;
+        if (!orderId) {
+            return Response.json({ ok: false, message: 'ID de la orden no encontrado en el pago' }, { status: 400 });
+        }
+        // const orderId = payment?.additional_info?.items[0].id! ?? '';
         await prisma.order.update({
             where: { id: orderId },
             data: {
