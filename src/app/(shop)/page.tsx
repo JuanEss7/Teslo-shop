@@ -1,5 +1,4 @@
 'use client'
-export const revalidatePath = 60
 import { getPaginatedProductsWithImages } from '@/actions';
 import { Pagination, ProductGrid, Title } from '@/components';
 import ProductSlideHome from '@/components/product/slideshow/ProductSlideHome';
