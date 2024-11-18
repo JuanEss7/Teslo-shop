@@ -58,7 +58,7 @@ export default function Home({ searchParams }: Props) {
       {
         (page === 1 && products.length === 12) && <ProductSlideHome
           products={productsToSlideShow}
-          className="hidden md:block border border-orange-500"
+          className="hidden md:block"
         />
       }
       {
@@ -76,7 +76,7 @@ export default function Home({ searchParams }: Props) {
                 value={searchProduct}
               />
               <label className='flex justify-center items-center gap-1'>
-                Ordernar por precio
+                Ordenar de menor a mayor precio.
                 <input
                   type="checkbox"
                   checked={orderProducts}
